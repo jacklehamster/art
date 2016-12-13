@@ -10,9 +10,12 @@
         var files = JSON.parse(xhr.responseText);
         var gallery = document.getElementById('gallery');
         files.forEach(file => {
-            var img = document.createElement('img');
-            img.src = file.path;
-            gallery.appendChild(img);
+            var ext = file.path.split('.').pop();
+            if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png')) {
+              var img = document.createElement('img');
+              img.src = file.path;
+              gallery.appendChild(img);
+            }
         });
       } else {
         console.error(xhr.statusText);
