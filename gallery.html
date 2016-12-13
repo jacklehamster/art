@@ -10,8 +10,8 @@
         var files = JSON.parse(xhr.responseText);
         var gallery = document.getElementById('gallery');
         files.forEach(file => {
-            var ext = file.path.split('.').pop();
-            if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png')) {
+            var ext = file.path.split('.').pop().toLowerCase();
+            if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
               var img = document.createElement('img');
               img.src = file.path;
               img.style.maxWidth = "128px";
