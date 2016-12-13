@@ -1,3 +1,4 @@
+<div id='gallery'></div>
 <script>
   var url = "https://api.github.com/repos/jacklehamster/Art/contents/Random";
 
@@ -7,7 +8,12 @@
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
         var files = JSON.parse(xhr.responseText);
-        files.forEach(file => console.log(file.path));
+        var gallery = document.getElementById('gallery');
+        files.forEach(file => {
+            var img = document.createElement('img');
+            img.src = file.path;
+            gallery.appendChild(img);
+        });
       } else {
         console.error(xhr.statusText);
       }
