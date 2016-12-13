@@ -13,10 +13,11 @@
             var ext = file.path.split('.').pop().toLowerCase();
             if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
               var img = document.createElement('img');
-              img.src = file.path;
-              img.style.maxWidth = "128px";
-              img.style.maxHeight = "128px";
+              img.src = "http://jacklehamster.github.io.rsz.io/Art/" + file.path + "?width=100";
+              img.style.maxWidth = "100px";
+              img.style.maxHeight = "100px";
               gallery.appendChild(img);
+//              http://jacklehamster.github.io.rsz.io/Art/
             }
         });
       } else {
