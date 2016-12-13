@@ -13,7 +13,7 @@
             var ext = file.path.split('.').pop().toLowerCase();
             if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
               var img = document.createElement('img');
-              img.src = "http://jacklehamster.github.io.rsz.io/Art/" + file.path + "?width=100";
+              img.src = "http://jacklehamster.github.io.rsz.io/Art/" + file.path + "?width=100&height=100";
               img.style.maxWidth = "100px";
               img.style.maxHeight = "100px";
               gallery.appendChild(img);
