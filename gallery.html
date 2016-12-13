@@ -14,8 +14,8 @@
             if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png')) {
               var img = document.createElement('img');
               img.src = file.path;
-              img.style.width = "64px";
-              img.style.height = "64px";
+              img.style.maxWidth = "128px";
+              img.style.maxHeight = "128px";
               gallery.appendChild(img);
             }
         });
