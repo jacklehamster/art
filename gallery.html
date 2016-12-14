@@ -13,7 +13,7 @@
             var ext = file.path.split('.').pop().toLowerCase();
             if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
               var img = document.createElement('img');
-              img.src = file.path;
+              img.src = file.download_url;
               img.style.maxWidth = "100px";
               img.style.maxHeight = "100px";
               gallery.appendChild(img);
