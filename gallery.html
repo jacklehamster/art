@@ -1,0 +1,31 @@
+<div id='gallery'></div>
+<script>
+  var url = "https://api.github.com/repos/jacklehamster/Art/contents/Random";
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.onload = function (e) {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var files = JSON.parse(xhr.responseText);
+        var gallery = document.getElementById('gallery');
+        files.forEach(file => {
+            var ext = file.path.split('.').pop().toLowerCase();
+            if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
+              var img = document.createElement('img');
+              img.src = file.download_url;
+              img.style.maxWidth = "100px";
+              img.style.maxHeight = "100px";
+              gallery.appendChild(img);
+            }
+        });
+      } else {
+        console.error(xhr.statusText);
+      }
+    }
+  };
+  xhr.onerror = function (e) {
+    console.error(xhr.statusText);
+  };
+  xhr.send(null);
+</script>
