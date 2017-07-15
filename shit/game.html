@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>    
+<head>
+    <title>One hour game jam</title>
+    <meta name="google" content="notranslate"/>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="user-scalable=no,width=device-width, initial-scale=1.0,minimum-scale=1.0"/>
+    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body style="background-color: skyblue">
+<audio autoplay loop src="axol.mp3"></audio>
+    <!--script src="main.js"></script-->
+    <intro>
+        <div style="width: 100%; text-align: center">
+            <img src="animegirl.png" alt="Game logo" style="height:100vh">
+        </div>
+
+
+        <span style="color: silver; padding-top: 2px;font-weight: bold; font-size:20px; position:absolute; bottom: 10px; left:5px">
+    <br>
+    Music: Axol x Alex Skrindo - You (NoCopyrightSound)
+    </span>
+        <span style="color: darkblue; font-weight: bold; font-size:20px; position:absolute; bottom: 12px; left:5px">
+    <br>
+    Music: Axol x Alex Skrindo - You (NoCopyrightSound)
+    </span>
+        <img id="button" src="button.gif" style="display:none;width:50px; height: 50px; position:absolute; right:30px; bottom: 10px">
+        <script>
+            window.gameStarted = false;
+            function startGame() {
+                document.getElementsByTagName('intro')[0].style.display = 'none';
+                window.gameStarted = true;
+            }
+
+            setTimeout(init,1000);
+            function init() {
+                document.getElementById("button").style.display = "";
+                document.addEventListener("click", startGame);
+                document.addEventListener("keyup", startGame);
+            }
+        </script>
+    </intro>
+
+    <script data-main="app" src="lib/requirejs/require.js"></script>
+    <div id="sidebar" width="300" height="100" style="font-size:30px; color:gold; position:absolute"></div>
+    <span id="fps" style="display:block; position:absolute; color:silver; top:0; left:0"></span>
+    <canvas id="abc"></canvas>
+</body>
+</html>

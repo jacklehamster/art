@@ -1,0 +1,20 @@
+{
+  "name": "Dobuki Game",
+  "main": "index.html",
+  "description": "Dobuki game description",
+  "version": "0.0.1",
+  "keywords": [ "dobuki" ],
+  "window": {
+    "title": "Dobuki Game",
+    "icon": "lib/dok/images/logo.ico",
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 600,
+    "position": "mouse",
+    "min_width": 400,
+    "min_height": 300,
+    "max_width": 800,
+    "max_height": 600
+  }
+}
