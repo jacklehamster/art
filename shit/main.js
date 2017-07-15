@@ -665,8 +665,10 @@ require([
                         var dx = runner.x - actor.x;
                         var dy = runner.y - actor.y;
                         const dist = Math.sqrt(dx*dx+dy*dy);
-                        if(dist < 1) {
+                        if(dist < 1 && !runner.touched) {
                             runner.touched = true;
+                            var pok = new Audio("splash.mp3");
+                            pok.play();
                         }
                      }
 
@@ -803,7 +805,7 @@ require([
                             : DOK.SpriteSheet.spritesheet.hand.up
 */
             } else if(!actor.touched && actor.type ==='squid') {
-                scale = .4;
+                scale = .3;
                 h = actor.z * 50;
                 var frame = Math.floor(actor.index+DOK.Loop.time/100);
                 var anim = DOK.SpriteSheet.spritesheet.poop;
