@@ -3,7 +3,9 @@
 <script>
   
   function compareFiles(file1, file2) {
-    return file1.type.localCompare(file2.type);
+    const val1 = file1.type === "dir" ? 1 : 0;
+    const val2 = file2.type === "dir" ? 1 : 0;
+    return val1 - val2;
   }
   
   function displayGallery(div, url) {
