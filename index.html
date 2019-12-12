@@ -1,6 +1,11 @@
 <body style="background-color:black">
 <div id='gallery'></div>
 <script>
+  
+  function compareFile(file1, file2) {
+    return file1.type.localCompare(file2.type);
+  }
+  
   function displayGallery(div, url) {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", url, true);
@@ -9,19 +14,37 @@
           if (xhr.status === 200) {
             const files = JSON.parse(xhr.responseText);
             console.log(files);
+            files.sort(compareFiles);
+            let imageDiv = null;
             files.forEach(file => {
-                var ext = file.path.split('.').pop().toLowerCase();
-                if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
-                  var img = document.createElement('img');
-                  img.crossOrigin = "";
-                  img.src = file.path;
-                  img.style.maxWidth = "100px";
-                  img.style.maxHeight = "100px";
-                  img.style.backgroundColor = "white";
-                  var a = document.createElement('a');
-                  a.href = file.path;
-                  a.appendChild(img);
-                  div.appendChild(a);
+                switch(file.type) {
+                  case "file": {
+                    const ext = file.path.split('.').pop().toLowerCase();
+                    if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
+                      if (!imageDiv) {
+                        imageDiv = div.appendChild(document.createElement('div'));
+                        imageDiv.style.margin = "10px";
+                        imageDiv.style.padding = "10px";
+                      }
+                      const a = imageDiv.appendChild(document.createElement('a'));
+                      a.href = file.path;
+                      const img = a.appendChild(document.createElement('img'));
+                      img.crossOrigin = "";
+                      img.src = file.path;
+                      img.style.maxWidth = "100px";
+                      img.style.maxHeight = "100px";
+                      img.style.backgroundColor = "white";
+                    }
+                    break;
+                  }
+                  case "dir": {
+                    const container = div.appendChild(document.createElement("div"));
+                    div.style.margin = "10px";
+                    div.style.padding = "10px";
+                    div.style.border = "1px solid black";
+                    displayGallery(container, file.git_url);
+                    break;
+                  }
                 }
             });
           } else {
