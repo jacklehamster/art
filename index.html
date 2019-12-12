@@ -1,38 +1,44 @@
 <body style="background-color:black">
 <div id='gallery'></div>
 <script>
-  var url = "https://api.github.com/repos/jacklehamster/art/contents/Random";
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.onload = function (e) {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        var files = JSON.parse(xhr.responseText);
-        var gallery = document.getElementById('gallery');
-        files.forEach(file => {
-            var ext = file.path.split('.').pop().toLowerCase();
-            if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
-              var img = document.createElement('img');
-              img.crossOrigin = "";
-              img.src = file.path;
-              img.style.maxWidth = "100px";
-              img.style.maxHeight = "100px";
-              img.style.backgroundColor = "white";
-              var a = document.createElement('a');
-              a.href = file.path;
-              a.appendChild(img);
-              gallery.appendChild(a);
-            }
-        });
-      } else {
+  function displayGallery(div, url) {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            const files = JSON.parse(xhr.responseText);
+            console.log(files);
+            files.forEach(file => {
+                var ext = file.path.split('.').pop().toLowerCase();
+                if(file.type == "file" && (ext=='jpeg'||ext=='gif'||ext=='jpg'||ext=='png'||ext=='svg')) {
+                  var img = document.createElement('img');
+                  img.crossOrigin = "";
+                  img.src = file.path;
+                  img.style.maxWidth = "100px";
+                  img.style.maxHeight = "100px";
+                  img.style.backgroundColor = "white";
+                  var a = document.createElement('a');
+                  a.href = file.path;
+                  a.appendChild(img);
+                  div.appendChild(a);
+                }
+            });
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+      };
+      xhr.onerror = function (e) {
         console.error(xhr.statusText);
-      }
-    }
-  };
-  xhr.onerror = function (e) {
-    console.error(xhr.statusText);
-  };
-  xhr.send(null);
+      };
+      xhr.send(null);
+  }  
+  
+  
+  document.addEventListener("DOMContentLoaded", e => {
+       displayGallery(document.getElementById('gallery'), "https://api.github.com/repos/jacklehamster/art/contents");
+  });
+  
 </script>
 </body>
